@@ -4,7 +4,7 @@
 # Maintainer:  Truocolo <truocolo@aol.com>
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-_py="python2"
+_py="python"
 _py3="python"
 _pkg="tomli-w"
 pkgname="${_py}-${_pkg}"
