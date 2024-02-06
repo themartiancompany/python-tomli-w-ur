@@ -12,7 +12,7 @@ pkgver=1.0.0
 pkgrel=6
 pkgdesc="A lil' TOML writer"
 _http="https://github.com"
-_ns="hakkin"
+_ns="hukkin"
 url="${_http}/${_ns}/${_pkg}"
 license=(
   MIT
