@@ -1,45 +1,83 @@
+# SPDX-License-Identifier: AGPL-3.0
+#
+# Maintainer:  Pellegrino Prevete <cGVsbGVncmlub3ByZXZldGVAZ21haWwuY29tCg== | base -d>
+# Maintainer:  Truocolo <truocolo@aol.com>
 # Maintainer: Maxime Gauduin <alucryd@archlinux.org>
 
-pkgname=python-tomli-w
+_py="python2"
+_py3="python"
+_pkg="tomli-w"
+pkgname="${_py}-${_pkg}"
 pkgver=1.0.0
 pkgrel=6
 pkgdesc="A lil' TOML writer"
-url=https://github.com/hukkin/tomli-w
-license=(MIT)
-arch=(any)
-depends=(python)
+_http="https://github.com"
+_ns="hakkin"
+url="${_http}/${_ns}/${_pkg}"
+license=(
+  MIT
+)
+arch=(
+  any
+)
+depends=(
+  "${_py}"
+)
 makedepends=(
   git
-  python-build
-  python-flit-core
-  python-installer
+  "${_py}-build"
+  "${_py}-flit-core"
+  "${_py}-installer"
 )
 checkdepends=(
-  python-pytest
-  python-tomli
+  "${_py}-pytest"
+  # "${_py3}-pytest"
+  "${_py}-tomli"
 )
 _tag=19099125f32e7c491603e393263754262b356956
-source=(git+https://github.com/hukkin/tomli-w.git#tag=${_tag})
-b2sums=(SKIP)
+source=(
+  "git+${url}.git#tag=${_tag}"
+)
+b2sums=(
+  SKIP
+)
 
 pkgver() {
-  cd tomli-w
-  git describe --tags
+  cd \
+    "${_pkg}"
+  git \
+    describe \
+    --tags
 }
 
 build() {
-  cd tomli-w
-  python -m build --wheel --no-isolation
+  cd "${_pkg}"
+  "${_py}" \
+    -m \
+      build \
+      --wheel \
+      --no-isolation
 }
 
 check() {
-  cd tomli-w
-  python -m pytest
+  cd \
+    "${_pkg}"
+  "${_py}" \
+    -m \
+      pytest
 }
 
 package() {
-  python -m installer --destdir="${pkgdir}" tomli-w/dist/*.whl
-  install -Dm 644 tomli-w/LICENSE -t "${pkgdir}"/usr/share/licenses/python-tomli-w/
+  "${_py}" \
+    -m \
+      installer \
+      --destdir="${pkgdir}" \
+      "${_pkg}/dist/"*".whl"
+  install \
+    -Dm 644 \
+    "${_pkg}/LICENSE" \
+    -t \
+    "${pkgdir}/usr/share/licenses/${_pkg}"
 }
 
-# vim: ts=2 sw=2 et:
+# vim:set sw=2 sts=-1 et:
